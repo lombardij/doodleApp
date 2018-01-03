@@ -1,0 +1,581 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		691FF3BC1FEDDB8C000DD33C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691FF3BB1FEDDB8C000DD33C /* AppDelegate.swift */; };
+		691FF3BE1FEDDB8C000DD33C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691FF3BD1FEDDB8C000DD33C /* MainViewController.swift */; };
+		691FF3C01FEDDB8C000DD33C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691FF3BF1FEDDB8C000DD33C /* SettingsViewController.swift */; };
+		691FF3C31FEDDB8C000DD33C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 691FF3C11FEDDB8C000DD33C /* Main.storyboard */; };
+		691FF3C51FEDDB8C000DD33C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 691FF3C41FEDDB8C000DD33C /* Assets.xcassets */; };
+		691FF3C81FEDDB8C000DD33C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 691FF3C61FEDDB8C000DD33C /* LaunchScreen.storyboard */; };
+		691FF3D31FEDDB8C000DD33C /* YoDoodleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691FF3D21FEDDB8C000DD33C /* YoDoodleTests.swift */; };
+		691FF3DE1FEDDB8C000DD33C /* YoDoodleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691FF3DD1FEDDB8C000DD33C /* YoDoodleUITests.swift */; };
+		691FF3EC1FEDDD9D000DD33C /* DoodleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691FF3EB1FEDDD9D000DD33C /* DoodleView.swift */; };
+		691FF3EE1FEEC360000DD33C /* DoodleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691FF3ED1FEEC360000DD33C /* DoodleModel.swift */; };
+		691FF3F01FF4CAC3000DD33C /* DoodlePeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691FF3EF1FF4CAC3000DD33C /* DoodlePeer.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		691FF3CF1FEDDB8C000DD33C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 691FF3B01FEDDB8C000DD33C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 691FF3B71FEDDB8C000DD33C;
+			remoteInfo = YoDoodle;
+		};
+		691FF3DA1FEDDB8C000DD33C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 691FF3B01FEDDB8C000DD33C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 691FF3B71FEDDB8C000DD33C;
+			remoteInfo = YoDoodle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		691FF3B81FEDDB8C000DD33C /* YoDoodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoDoodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		691FF3BB1FEDDB8C000DD33C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		691FF3BD1FEDDB8C000DD33C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		691FF3BF1FEDDB8C000DD33C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		691FF3C21FEDDB8C000DD33C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		691FF3C41FEDDB8C000DD33C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		691FF3C71FEDDB8C000DD33C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		691FF3C91FEDDB8C000DD33C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		691FF3CE1FEDDB8C000DD33C /* YoDoodleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YoDoodleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		691FF3D21FEDDB8C000DD33C /* YoDoodleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoDoodleTests.swift; sourceTree = "<group>"; };
+		691FF3D41FEDDB8C000DD33C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		691FF3D91FEDDB8C000DD33C /* YoDoodleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YoDoodleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		691FF3DD1FEDDB8C000DD33C /* YoDoodleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoDoodleUITests.swift; sourceTree = "<group>"; };
+		691FF3DF1FEDDB8C000DD33C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		691FF3EB1FEDDD9D000DD33C /* DoodleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleView.swift; sourceTree = "<group>"; };
+		691FF3ED1FEEC360000DD33C /* DoodleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleModel.swift; sourceTree = "<group>"; };
+		691FF3EF1FF4CAC3000DD33C /* DoodlePeer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodlePeer.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		691FF3B51FEDDB8C000DD33C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		691FF3CB1FEDDB8C000DD33C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		691FF3D61FEDDB8C000DD33C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		691FF3AF1FEDDB8C000DD33C = {
+			isa = PBXGroup;
+			children = (
+				691FF3BA1FEDDB8C000DD33C /* YoDoodle */,
+				691FF3D11FEDDB8C000DD33C /* YoDoodleTests */,
+				691FF3DC1FEDDB8C000DD33C /* YoDoodleUITests */,
+				691FF3B91FEDDB8C000DD33C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		691FF3B91FEDDB8C000DD33C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				691FF3B81FEDDB8C000DD33C /* YoDoodle.app */,
+				691FF3CE1FEDDB8C000DD33C /* YoDoodleTests.xctest */,
+				691FF3D91FEDDB8C000DD33C /* YoDoodleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		691FF3BA1FEDDB8C000DD33C /* YoDoodle */ = {
+			isa = PBXGroup;
+			children = (
+				691FF3BB1FEDDB8C000DD33C /* AppDelegate.swift */,
+				691FF3BD1FEDDB8C000DD33C /* MainViewController.swift */,
+				691FF3BF1FEDDB8C000DD33C /* SettingsViewController.swift */,
+				691FF3EB1FEDDD9D000DD33C /* DoodleView.swift */,
+				691FF3ED1FEEC360000DD33C /* DoodleModel.swift */,
+				691FF3EF1FF4CAC3000DD33C /* DoodlePeer.swift */,
+				691FF3C11FEDDB8C000DD33C /* Main.storyboard */,
+				691FF3C41FEDDB8C000DD33C /* Assets.xcassets */,
+				691FF3C61FEDDB8C000DD33C /* LaunchScreen.storyboard */,
+				691FF3C91FEDDB8C000DD33C /* Info.plist */,
+			);
+			path = YoDoodle;
+			sourceTree = "<group>";
+		};
+		691FF3D11FEDDB8C000DD33C /* YoDoodleTests */ = {
+			isa = PBXGroup;
+			children = (
+				691FF3D21FEDDB8C000DD33C /* YoDoodleTests.swift */,
+				691FF3D41FEDDB8C000DD33C /* Info.plist */,
+			);
+			path = YoDoodleTests;
+			sourceTree = "<group>";
+		};
+		691FF3DC1FEDDB8C000DD33C /* YoDoodleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				691FF3DD1FEDDB8C000DD33C /* YoDoodleUITests.swift */,
+				691FF3DF1FEDDB8C000DD33C /* Info.plist */,
+			);
+			path = YoDoodleUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		691FF3B71FEDDB8C000DD33C /* YoDoodle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 691FF3E21FEDDB8C000DD33C /* Build configuration list for PBXNativeTarget "YoDoodle" */;
+			buildPhases = (
+				691FF3B41FEDDB8C000DD33C /* Sources */,
+				691FF3B51FEDDB8C000DD33C /* Frameworks */,
+				691FF3B61FEDDB8C000DD33C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YoDoodle;
+			productName = YoDoodle;
+			productReference = 691FF3B81FEDDB8C000DD33C /* YoDoodle.app */;
+			productType = "com.apple.product-type.application";
+		};
+		691FF3CD1FEDDB8C000DD33C /* YoDoodleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 691FF3E51FEDDB8C000DD33C /* Build configuration list for PBXNativeTarget "YoDoodleTests" */;
+			buildPhases = (
+				691FF3CA1FEDDB8C000DD33C /* Sources */,
+				691FF3CB1FEDDB8C000DD33C /* Frameworks */,
+				691FF3CC1FEDDB8C000DD33C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				691FF3D01FEDDB8C000DD33C /* PBXTargetDependency */,
+			);
+			name = YoDoodleTests;
+			productName = YoDoodleTests;
+			productReference = 691FF3CE1FEDDB8C000DD33C /* YoDoodleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		691FF3D81FEDDB8C000DD33C /* YoDoodleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 691FF3E81FEDDB8C000DD33C /* Build configuration list for PBXNativeTarget "YoDoodleUITests" */;
+			buildPhases = (
+				691FF3D51FEDDB8C000DD33C /* Sources */,
+				691FF3D61FEDDB8C000DD33C /* Frameworks */,
+				691FF3D71FEDDB8C000DD33C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				691FF3DB1FEDDB8C000DD33C /* PBXTargetDependency */,
+			);
+			name = YoDoodleUITests;
+			productName = YoDoodleUITests;
+			productReference = 691FF3D91FEDDB8C000DD33C /* YoDoodleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		691FF3B01FEDDB8C000DD33C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = "Phillip Fiedler";
+				TargetAttributes = {
+					691FF3B71FEDDB8C000DD33C = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+					691FF3CD1FEDDB8C000DD33C = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 691FF3B71FEDDB8C000DD33C;
+					};
+					691FF3D81FEDDB8C000DD33C = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 691FF3B71FEDDB8C000DD33C;
+					};
+				};
+			};
+			buildConfigurationList = 691FF3B31FEDDB8C000DD33C /* Build configuration list for PBXProject "YoDoodle" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 691FF3AF1FEDDB8C000DD33C;
+			productRefGroup = 691FF3B91FEDDB8C000DD33C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				691FF3B71FEDDB8C000DD33C /* YoDoodle */,
+				691FF3CD1FEDDB8C000DD33C /* YoDoodleTests */,
+				691FF3D81FEDDB8C000DD33C /* YoDoodleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		691FF3B61FEDDB8C000DD33C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				691FF3C81FEDDB8C000DD33C /* LaunchScreen.storyboard in Resources */,
+				691FF3C51FEDDB8C000DD33C /* Assets.xcassets in Resources */,
+				691FF3C31FEDDB8C000DD33C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		691FF3CC1FEDDB8C000DD33C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		691FF3D71FEDDB8C000DD33C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		691FF3B41FEDDB8C000DD33C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				691FF3F01FF4CAC3000DD33C /* DoodlePeer.swift in Sources */,
+				691FF3C01FEDDB8C000DD33C /* SettingsViewController.swift in Sources */,
+				691FF3EE1FEEC360000DD33C /* DoodleModel.swift in Sources */,
+				691FF3EC1FEDDD9D000DD33C /* DoodleView.swift in Sources */,
+				691FF3BC1FEDDB8C000DD33C /* AppDelegate.swift in Sources */,
+				691FF3BE1FEDDB8C000DD33C /* MainViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		691FF3CA1FEDDB8C000DD33C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				691FF3D31FEDDB8C000DD33C /* YoDoodleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		691FF3D51FEDDB8C000DD33C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				691FF3DE1FEDDB8C000DD33C /* YoDoodleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		691FF3D01FEDDB8C000DD33C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 691FF3B71FEDDB8C000DD33C /* YoDoodle */;
+			targetProxy = 691FF3CF1FEDDB8C000DD33C /* PBXContainerItemProxy */;
+		};
+		691FF3DB1FEDDB8C000DD33C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 691FF3B71FEDDB8C000DD33C /* YoDoodle */;
+			targetProxy = 691FF3DA1FEDDB8C000DD33C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		691FF3C11FEDDB8C000DD33C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				691FF3C21FEDDB8C000DD33C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		691FF3C61FEDDB8C000DD33C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				691FF3C71FEDDB8C000DD33C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		691FF3E01FEDDB8C000DD33C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		691FF3E11FEDDB8C000DD33C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		691FF3E31FEDDB8C000DD33C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HRUATHMVK;
+				INFOPLIST_FILE = YoDoodle/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.InteractiveMindware.YoDoodle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		691FF3E41FEDDB8C000DD33C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HRUATHMVK;
+				INFOPLIST_FILE = YoDoodle/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.InteractiveMindware.YoDoodle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		691FF3E61FEDDB8C000DD33C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HRUATHMVK;
+				INFOPLIST_FILE = YoDoodleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.InteractiveMindware.YoDoodleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YoDoodle.app/YoDoodle";
+			};
+			name = Debug;
+		};
+		691FF3E71FEDDB8C000DD33C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HRUATHMVK;
+				INFOPLIST_FILE = YoDoodleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.InteractiveMindware.YoDoodleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YoDoodle.app/YoDoodle";
+			};
+			name = Release;
+		};
+		691FF3E91FEDDB8C000DD33C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HRUATHMVK;
+				INFOPLIST_FILE = YoDoodleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.InteractiveMindware.YoDoodleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = YoDoodle;
+			};
+			name = Debug;
+		};
+		691FF3EA1FEDDB8C000DD33C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HRUATHMVK;
+				INFOPLIST_FILE = YoDoodleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.InteractiveMindware.YoDoodleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = YoDoodle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		691FF3B31FEDDB8C000DD33C /* Build configuration list for PBXProject "YoDoodle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				691FF3E01FEDDB8C000DD33C /* Debug */,
+				691FF3E11FEDDB8C000DD33C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		691FF3E21FEDDB8C000DD33C /* Build configuration list for PBXNativeTarget "YoDoodle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				691FF3E31FEDDB8C000DD33C /* Debug */,
+				691FF3E41FEDDB8C000DD33C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		691FF3E51FEDDB8C000DD33C /* Build configuration list for PBXNativeTarget "YoDoodleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				691FF3E61FEDDB8C000DD33C /* Debug */,
+				691FF3E71FEDDB8C000DD33C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		691FF3E81FEDDB8C000DD33C /* Build configuration list for PBXNativeTarget "YoDoodleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				691FF3E91FEDDB8C000DD33C /* Debug */,
+				691FF3EA1FEDDB8C000DD33C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 691FF3B01FEDDB8C000DD33C /* Project object */;
+}
