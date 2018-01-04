@@ -12,6 +12,8 @@ class DoodleModel: NSObject
 {
     var doodleArray = NSMutableArray()
     
+    // Global Draw Mode/Effect Vars
+    
     var isSnakeModeEnabled: Bool = true
     var snakeLength: Int = 50
     
