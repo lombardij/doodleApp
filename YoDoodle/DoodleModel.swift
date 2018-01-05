@@ -10,13 +10,12 @@ import UIKit
 
 class DoodleModel: NSObject
 {
-    //var doodleArray = NSMutableArray()
     var doodleArray = [DoodleMark]()
     
-    // Global Draw Mode/Effect Vars
+    // Global/Current Draw Mode & Effect
     
     var isSnakeModeEnabled: Bool = true
-    var snakeLength: Int = 50
+    var snakeLength: Float = 50
     
     var isDotModeEnabled: Bool = true
     var dotSize: Float = 8
@@ -44,16 +43,6 @@ class DoodleModel: NSObject
     }
     
     
-    //    func addPoint(point: CGPoint)
-    //    {
-    //        doodleArray.add(point)
-    //
-    //        while isSnakeModeEnabled && doodleArray.count > snakeLength
-    //        {
-    //            doodleArray.removeObjects(at: [0])
-    //        }
-    //    }
-    
     func addPoint(point: CGPoint)
     {
         let doodleMark = DoodleMark(touchPoint: point)
@@ -68,9 +57,9 @@ class DoodleModel: NSObject
             doodleMark.addDrawMode(newDrawMode: DrawMode(drawMethod: DrawMethod.SHAKE, drawValue: shakeMax))
         }
         
-        doodleArray.append(DoodleMark(touchPoint: point))
+        doodleArray.append(doodleMark)
         
-        while isSnakeModeEnabled && doodleArray.count > snakeLength
+        while isSnakeModeEnabled && (doodleArray.count > Int(snakeLength))
         {
             doodleArray.remove(at: 0)
         }
@@ -80,20 +69,20 @@ class DoodleModel: NSObject
     func shakePoints()
     {
         var doodleMark: DoodleMark!
+        var snakeSize: Float
         
         for index in 0..<doodleArray.count
         {
             doodleMark = doodleArray[index]
             
-            for drawMode:DrawMode in doodleMark.drawMode
+            snakeSize = doodleMark.doesMarkInclude(drawMethod: DrawMethod.SHAKE)
+            
+            if snakeSize > -1
             {
-                if drawMode.drawMethod == DrawMethod.SHAKE
-                {
-                    let newX: Float = Float(doodleMark.point.x) + Float(arc4random_uniform(UInt32(shakeMax))) - (shakeMax-1)/2.0
-                    let newY: Float = Float(doodleMark.point.y) + Float(arc4random_uniform(UInt32(shakeMax))) - (shakeMax-1)/2.0
-                    
-                    doodleMark.point = CGPoint(x: CGFloat(newX), y: CGFloat(newY))
-                }
+                let newX: Float = Float(doodleMark.point.x) + Float(arc4random_uniform(UInt32(snakeSize))) - (snakeSize-1)/2.0
+                let newY: Float = Float(doodleMark.point.y) + Float(arc4random_uniform(UInt32(snakeSize))) - (snakeSize-1)/2.0
+                
+                doodleMark.point = CGPoint(x: CGFloat(newX), y: CGFloat(newY))
             }
         }
     }
@@ -108,7 +97,7 @@ class DoodleModel: NSObject
     func loadSettings()
     {
         isSnakeModeEnabled = UserDefaults.standard.bool(forKey: "isSnakeModeEnabled")
-        snakeLength = UserDefaults.standard.integer(forKey: "snakeLength")
+        snakeLength = UserDefaults.standard.float(forKey: "snakeLength")
         
         isDotModeEnabled = UserDefaults.standard.bool(forKey: "isDotModeEnabled")
         dotSize = UserDefaults.standard.float(forKey: "dotSize")
@@ -171,28 +160,29 @@ class DoodleMark
         self.drawMode.append(newDrawMode)
     }
     
-    func doesMark(drawMethod: DrawMethod) Float
+    func doesMarkInclude(drawMethod: DrawMethod) -> Float
+    {
+        for mode:DrawMode in self.drawMode
+        {
+            if mode.drawMethod == drawMethod
+            {
+                return mode.drawValue
+            }
+        }
+        return -1
+    }
+}
+
+struct DrawMode
 {
-    for mode:DrawMode in self.drawMode
-    {
-    if mode.drawMethod == drawMethod.SHAKE
-    {
-    return mode.
-    }
-    
-    }
-    }
-    
-    struct DrawMode
-    {
-        var drawMethod: DrawMethod
-        var drawValue: Float
-    }
-    
-    enum DrawMethod
-    {
-        case DOT
-        case LINE
-        case SHAKE
+    var drawMethod: DrawMethod
+    var drawValue: Float
+}
+
+enum DrawMethod
+{
+    case DOT
+    case LINE
+    case SHAKE
 }
 

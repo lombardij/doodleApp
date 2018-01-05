@@ -9,10 +9,10 @@
 import UIKit
 
 class DoodleView: UIView {
-
+    
     var doodleModel: DoodleModel!
     var doodlePeer: DoodlePeer!
-
+    
     var touchBusy: Bool = false
     
     
@@ -20,32 +20,33 @@ class DoodleView: UIView {
     {
         let context = UIGraphicsGetCurrentContext()
         context?.setAllowsAntialiasing(true)
-
-        context?.setLineWidth(CGFloat(doodleModel.lineWidth))
-        context?.setFillColor(UIColor.red.cgColor)
-        
-        var drawPt: CGPoint!
-        var drawPt2: CGPoint!
-        
+                
         for index in 0..<doodleModel.doodleArray.count
         {
-            drawPt = doodleModel.doodleArray[index] as? CGPoint
+            let doodleMark = doodleModel.doodleArray[index]
+            context?.setFillColor(doodleMark.color.cgColor)
             
-            if doodleModel.isLineModeEnabled && index > 0
+            let lineWidth = doodleMark.doesMarkInclude(drawMethod: DrawMethod.LINE)
+            
+            if lineWidth > -1 && index > 0
             {
-                drawPt2 = doodleModel.doodleArray[index - 1] as? CGPoint
+                context?.setLineWidth(CGFloat(lineWidth))
                 
-                context?.move(to: drawPt)
-                context?.addLine(to: drawPt2)
+                let doodleMark2 = doodleModel.doodleArray[index - 1]
+                
+                context?.move(to: doodleMark.point)
+                context?.addLine(to: doodleMark2.point)
                 context?.strokePath()
             }
             
-            if doodleModel.isDotModeEnabled
+            let dotSize = doodleMark.doesMarkInclude(drawMethod: DrawMethod.DOT)
+
+            if dotSize > -1
             {
-                let circleRect = CGRect(x: CGFloat(drawPt.x) - CGFloat(doodleModel.dotSize/2.0),
-                                        y: CGFloat(drawPt.y) - CGFloat(doodleModel.dotSize/2.0),
-                                        width: CGFloat(doodleModel.dotSize),
-                                        height: CGFloat(doodleModel.dotSize))
+                let circleRect = CGRect(x: CGFloat(doodleMark.point.x) - CGFloat(dotSize/2.0),
+                                        y: CGFloat(doodleMark.point.y) - CGFloat(dotSize/2.0),
+                                        width: CGFloat(dotSize),
+                                        height: CGFloat(dotSize))
                 context?.fillEllipse(in: circleRect)
             }
         }
@@ -55,7 +56,7 @@ class DoodleView: UIView {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         if touchBusy { return }
-
+        
         touchBusy = true
         
         let touch = touches.first!
@@ -68,7 +69,7 @@ class DoodleView: UIView {
         
         touchBusy = false
     }
-
-
+    
+    
 }
 

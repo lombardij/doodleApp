@@ -53,7 +53,7 @@ class SettingsViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         doodleModel.isSnakeModeEnabled = snakeMode.isOn
-        doodleModel.snakeLength = Int(snakeLength.value)
+        doodleModel.snakeLength = snakeLength.value
         
         doodleModel.isDotModeEnabled = dotMode.isOn
         doodleModel.dotSize = dotSize.value

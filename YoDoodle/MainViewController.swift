@@ -64,11 +64,16 @@ class MainViewController: UIViewController
         {
             self.shakeTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.shakePoints), userInfo: nil, repeats: true)
         }
-        else if !doodleModel.isShakeModeEnabled && self.shakeTimer != nil
-        {
-            self.shakeTimer.invalidate()
-            self.shakeTimer = nil
-        }
+        
+//        if doodleModel.isShakeModeEnabled && shakeTimer == nil
+//        {
+//            self.shakeTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.shakePoints), userInfo: nil, repeats: true)
+//        }
+//        else if !doodleModel.isShakeModeEnabled && self.shakeTimer != nil
+//        {
+//            self.shakeTimer.invalidate()
+//            self.shakeTimer = nil
+//        }
     }
     
     
