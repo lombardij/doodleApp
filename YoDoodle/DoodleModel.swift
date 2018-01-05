@@ -45,7 +45,7 @@ class DoodleModel: NSObject
     }
     
     
-    func addPoint(point: CGPoint)
+    func addPoint(point: CGPoint) -> DoodleMark
     {
         let doodleMark = DoodleMark(touchPoint: point)
         
@@ -67,6 +67,8 @@ class DoodleModel: NSObject
         {
             doodleArray.remove(at: 0)
         }
+        
+        return doodleMark
     }
     
     
@@ -153,6 +155,20 @@ class DoodleMark
     var color: UIColor!
     var drawMode = [DrawMode]()
     
+    var jsonString : String
+    {
+        let colorStr = color.toRGBAString()
+        var dict = [ "point" : String(format: "{%.1f,%.1f}|", point.x, point.y), "color" : colorStr ]
+        
+        for index in 0..<drawMode.count
+        {
+            dict["drawmode\(index)"] = drawMode[index].jsonString
+        }
+        
+        let data =  try! JSONSerialization.data(withJSONObject: dict, options: [])
+        return String(data:data, encoding:.utf8)!
+    }
+    
     init(touchPoint: CGPoint)
     {
         self.point = touchPoint
@@ -175,12 +191,34 @@ class DoodleMark
         }
         return -1
     }
+    
+    func loadJSON(text: String) -> [String: Any]?
+    {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
 }
 
 struct DrawMode
 {
     var drawMethod: DrawMethod
     var drawValue: Float
+    
+    var jsonString : String
+    {
+        let dict = [
+            "drawMethod" : drawMethod.hashValue,
+            "drawValue" : String(format: "%.2f", drawValue),
+            ] as [String : Any]
+        let data =  try! JSONSerialization.data(withJSONObject: dict, options: [])
+        return String(data:data, encoding:.utf8)!
+    }
 }
 
 enum DrawMethod
@@ -190,3 +228,22 @@ enum DrawMethod
     case SHAKE
 }
 
+extension UIColor
+{
+    public convenience init?(rgbaString : String)
+    {
+        self.init(ciColor: CIColor(string: rgbaString))
+    }
+    
+    //Convert UIColor to RGBA String
+    func toRGBAString()-> String
+    {
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        self.getRed(&r, green: &g, blue: &b, alpha: &a)
+        return "\(r) \(g) \(b) \(a)"
+    }
+    
+}

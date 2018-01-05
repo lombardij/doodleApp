@@ -125,8 +125,8 @@ class DoodleView: UIView {
         }
         else
         {
-            doodleModel.addPoint(point: point)
-            doodlePeer.send(drawPt: point)
+            let doodleMark = doodleModel.addPoint(point: point)
+            doodlePeer.send(doodleMark: doodleMark)
         }
         
         self.setNeedsDisplay()

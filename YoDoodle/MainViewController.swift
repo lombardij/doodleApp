@@ -107,10 +107,11 @@ extension MainViewController : DoodlePeerDelegate
         }
     }
     
-    func drawPtAdded(manager: DoodlePeer, drawPtString: String)
+    func addDoodleMark(manager: DoodlePeer, doodleMarkString: String)
     {
         OperationQueue.main.addOperation
         {
+            
             self.doodleModel.addPoint(point: CGPointFromString(drawPtString))
             self.doodleView.setNeedsDisplay()
         }

@@ -51,17 +51,14 @@ class DoodlePeer: NSObject
     }()
     
     
-    func send(drawPt : CGPoint)
+    func send(doodleMark : DoodleMark)
     {
         if session.connectedPeers.count > 0
         {
             do
             {
-                NSLog("%@", "sendPt: x=\(drawPt.x), y=\(drawPt.y) to \(session.connectedPeers.count) peers")
-                
-                //let drawPtString: String = "{\(drawPt.x),\(drawPt.y)}"
-                let drawPtString = String(format: "{%.1f,%.1f}", drawPt.x, drawPt.y)
-                try self.session.send(drawPtString.data(using: .utf8)!, toPeers: session.connectedPeers, with: .reliable)
+                let doodleMarkString = doodleMark.jsonString
+                try self.session.send(doodleMarkString.data(using: .utf8)!, toPeers: session.connectedPeers, with: .reliable)
             }
             catch let error
             {
@@ -140,7 +137,7 @@ extension DoodlePeer : MCSessionDelegate
 protocol DoodlePeerDelegate
 {
     func connectedDevicesChanged(manager : DoodlePeer, connectedDevices: [String])
-    func drawPtAdded(manager : DoodlePeer, drawPtString: String)
+    func addDoodleMark(manager : DoodlePeer, doodleMarkString: String)
     
 }
 
