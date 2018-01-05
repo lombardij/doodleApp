@@ -26,6 +26,8 @@ class DoodleModel: NSObject
     var isShakeModeEnabled: Bool = false
     var shakeMax: Float = 4
     
+    var currentColor: UIColor = UIColor.red
+    
     
     override init()
     {
@@ -56,6 +58,8 @@ class DoodleModel: NSObject
         if isShakeModeEnabled {
             doodleMark.addDrawMode(newDrawMode: DrawMode(drawMethod: DrawMethod.SHAKE, drawValue: shakeMax))
         }
+        
+        doodleMark.color = currentColor
         
         doodleArray.append(doodleMark)
         

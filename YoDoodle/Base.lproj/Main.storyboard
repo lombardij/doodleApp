@@ -18,25 +18,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jRv-ZN-Qk1" customClass="DoodleView" customModule="YoDoodle" customModuleProvider="target">
-                                <rect key="frame" x="24" y="20" width="321" height="158"/>
+                                <rect key="frame" x="24" y="20" width="95" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vSG-s1-BCL">
-                                <rect key="frame" x="37.5" y="558" width="300" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="dgz-By-6JX"/>
-                                </constraints>
-                            </stackView>
+                            <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtg-Zi-VLw">
+                                <rect key="frame" x="137" y="20" width="28" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Clear"/>
+                                <connections>
+                                    <action selector="clearDoodle:" destination="9pv-A4-QxB" eventType="touchUpInside" id="01p-0f-5yq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="vSG-s1-BCL" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="cEb-K9-VMj"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Doodle" image="first" id="acW-dT-cKf"/>
                     <connections>
+                        <outlet property="clearButton" destination="wtg-Zi-VLw" id="QBN-nu-nsf"/>
                         <outlet property="doodleView" destination="jRv-ZN-Qk1" id="Qjk-5K-bwB"/>
                     </connections>
                 </viewController>
@@ -242,6 +242,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Clear" width="25" height="25"/>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>

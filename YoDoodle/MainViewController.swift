@@ -11,6 +11,7 @@ import UIKit
 class MainViewController: UIViewController
 {
     @IBOutlet var doodleView: DoodleView!
+    @IBOutlet var clearButton: UIButton!
     
     let doodleModel = DoodleModel()
     let doodlePeer = DoodlePeer()
@@ -23,6 +24,8 @@ class MainViewController: UIViewController
         super.viewDidLoad()
         
         doodleView.frame = self.view.frame
+        
+        clearButton.center = CGPoint(x: self.view.frame.width - 40, y: 60)
         
         if let viewControllers = self.tabBarController?.viewControllers
         {
@@ -48,6 +51,8 @@ class MainViewController: UIViewController
         super.viewDidAppear(animated)
         
         checkDrawEffects()
+        
+        doodleView.updateColorBox(viewRect: self.view.frame)
     }
     
     
