@@ -10,7 +10,8 @@ import UIKit
 
 class DoodleModel: NSObject
 {
-    var doodleArray = NSMutableArray()
+    //var doodleArray = NSMutableArray()
+    var doodleArray = [DoodleMark]()
     
     // Global Draw Mode/Effect Vars
     
@@ -43,36 +44,64 @@ class DoodleModel: NSObject
     }
     
     
+    //    func addPoint(point: CGPoint)
+    //    {
+    //        doodleArray.add(point)
+    //
+    //        while isSnakeModeEnabled && doodleArray.count > snakeLength
+    //        {
+    //            doodleArray.removeObjects(at: [0])
+    //        }
+    //    }
+    
     func addPoint(point: CGPoint)
     {
-        doodleArray.add(point)
+        let doodleMark = DoodleMark(touchPoint: point)
+        
+        if isDotModeEnabled {
+            doodleMark.addDrawMode(newDrawMode: DrawMode(drawMethod: DrawMethod.DOT, drawValue: dotSize))
+        }
+        if isLineModeEnabled {
+            doodleMark.addDrawMode(newDrawMode: DrawMode(drawMethod: DrawMethod.LINE, drawValue: lineWidth))
+        }
+        if isShakeModeEnabled {
+            doodleMark.addDrawMode(newDrawMode: DrawMode(drawMethod: DrawMethod.SHAKE, drawValue: shakeMax))
+        }
+        
+        doodleArray.append(DoodleMark(touchPoint: point))
         
         while isSnakeModeEnabled && doodleArray.count > snakeLength
         {
-            doodleArray.removeObjects(at: [0])
+            doodleArray.remove(at: 0)
         }
     }
     
     
     func shakePoints()
     {
-        var drawPt: CGPoint!
+        var doodleMark: DoodleMark!
         
         for index in 0..<doodleArray.count
         {
-            drawPt = doodleArray[index] as? CGPoint
+            doodleMark = doodleArray[index]
             
-            let newX: Float = Float(drawPt.x) + Float(arc4random_uniform(UInt32(shakeMax))) - (shakeMax-1)/2.0
-            let newY: Float = Float(drawPt.y) + Float(arc4random_uniform(UInt32(shakeMax))) - (shakeMax-1)/2.0
-
-            doodleArray.replaceObject(at: index, with: CGPoint(x: CGFloat(newX), y: CGFloat(newY)))
+            for drawMode:DrawMode in doodleMark.drawMode
+            {
+                if drawMode.drawMethod == DrawMethod.SHAKE
+                {
+                    let newX: Float = Float(doodleMark.point.x) + Float(arc4random_uniform(UInt32(shakeMax))) - (shakeMax-1)/2.0
+                    let newY: Float = Float(doodleMark.point.y) + Float(arc4random_uniform(UInt32(shakeMax))) - (shakeMax-1)/2.0
+                    
+                    doodleMark.point = CGPoint(x: CGFloat(newX), y: CGFloat(newY))
+                }
+            }
         }
     }
     
     
     func clearDoodle()
     {
-        doodleArray.removeAllObjects()
+        doodleArray.removeAll()
     }
     
     
@@ -96,16 +125,16 @@ class DoodleModel: NSObject
     {
         UserDefaults.standard.set(isSnakeModeEnabled, forKey: "isSnakeModeEnabled")
         UserDefaults.standard.set(snakeLength, forKey: "snakeLength")
- 
+        
         UserDefaults.standard.set(isDotModeEnabled, forKey: "isDotModeEnabled")
         UserDefaults.standard.set(dotSize, forKey: "dotSize")
-
+        
         UserDefaults.standard.set(isLineModeEnabled, forKey: "isLineModeEnabled")
         UserDefaults.standard.set(lineWidth, forKey: "lineWidth")
         
         UserDefaults.standard.set(isShakeModeEnabled, forKey: "isShakeModeEnabled")
         UserDefaults.standard.set(shakeMax, forKey: "shakeMax")
-   }
+    }
     
     
     func resetSettingsToDefaults()
@@ -122,5 +151,48 @@ class DoodleModel: NSObject
         UserDefaults.standard.set(false, forKey: "isShakeModeEnabled")
         UserDefaults.standard.set(4, forKey: "shakeMax")
     }
-    
 }
+
+
+class DoodleMark
+{
+    var point: CGPoint!
+    var color: UIColor!
+    var drawMode = [DrawMode]()
+    
+    init(touchPoint: CGPoint)
+    {
+        self.point = touchPoint
+        self.color = UIColor.black
+    }
+    
+    func addDrawMode(newDrawMode: DrawMode)
+    {
+        self.drawMode.append(newDrawMode)
+    }
+    
+    func doesMark(drawMethod: DrawMethod) Float
+{
+    for mode:DrawMode in self.drawMode
+    {
+    if mode.drawMethod == drawMethod.SHAKE
+    {
+    return mode.
+    }
+    
+    }
+    }
+    
+    struct DrawMode
+    {
+        var drawMethod: DrawMethod
+        var drawValue: Float
+    }
+    
+    enum DrawMethod
+    {
+        case DOT
+        case LINE
+        case SHAKE
+}
+
