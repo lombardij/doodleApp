@@ -57,7 +57,7 @@ class DoodlePeer: NSObject
         {
             do
             {
-                let doodleMarkString = doodleMark.jsonString
+                let doodleMarkString = doodleMark.toString
                 try self.session.send(doodleMarkString.data(using: .utf8)!, toPeers: session.connectedPeers, with: .reliable)
             }
             catch let error
@@ -117,7 +117,7 @@ extension DoodlePeer : MCSessionDelegate
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data)")
         let str = String(data: data, encoding: .utf8)!
-        self.delegate?.drawPtAdded(manager: self, drawPtString: str)
+        self.delegate?.addDoodleMark(manager: self, doodleMarkString: str)
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {

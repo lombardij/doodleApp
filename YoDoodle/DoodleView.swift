@@ -72,6 +72,7 @@ class DoodleView: UIView {
     {
         let context = UIGraphicsGetCurrentContext()
         let colorWidth = colorBox.fullRect.size.width / CGFloat(colorBox.colorArray.count)
+        let colorIndex: Int = Int(CGFloat(colorBox.curPosition) * CGFloat(colorBox.colorArray.count))
         
         for index in 0..<colorBox.colorArray.count
         {
@@ -79,11 +80,23 @@ class DoodleView: UIView {
             context?.setFillColor(color.cgColor)
 
             context?.fill(CGRect(x: colorBox.fullRect.minX + CGFloat(index) * colorWidth,
-                                 y: colorBox.fullRect.minY,
-                                 width: colorWidth,
-                                 height: colorBox.fullRect.size.height))
+                                                      y: colorBox.fullRect.minY,
+                                                     width: colorWidth,
+                                                     height: colorBox.fullRect.size.height))
         }
-        // draw line/arrow indicating current color
+        
+        for index in 0..<colorBox.colorArray.count
+        {
+            if index == colorIndex
+            {
+                context?.setLineWidth(CGFloat(5))
+                context?.setStrokeColor(UIColor.white.cgColor)
+                context?.stroke(CGRect(x: colorBox.fullRect.minX + CGFloat(index) * colorWidth,
+                                                                  y: colorBox.fullRect.minY,
+                                                                  width: colorWidth,
+                                                                  height: colorBox.fullRect.size.height))
+            }
+        }
     }
     
     
@@ -145,17 +158,11 @@ class DoodleView: UIView {
                 point.y > colorBox.fullRect.minY && point.y < colorBox.fullRect.maxY
             {
                 let colorWidth = colorBox.fullRect.size.width / CGFloat(colorBox.colorArray.count)
-                
-                // Update current color given currentPosition
-                // temp
-                
                 let index: Int = Int((point.x - colorBox.fullRect.minX) / colorWidth)
                 
                 colorBox.color = colorBox.colorArray[index]
                 doodleModel.currentColor = colorBox.color
-                
-                // save currentColor to user settings
-            }
+             }
             
             colorBox.active = false
         }

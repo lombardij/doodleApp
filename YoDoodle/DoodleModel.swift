@@ -100,6 +100,46 @@ class DoodleModel: NSObject
     }
     
     
+    func createDoodleMarkFromString(doodleMarkString: String)
+    {
+        let doodleMark = DoodleMark(touchPoint: CGPoint(x:0, y:0))
+        
+        let doodleParms = doodleMarkString.components(separatedBy: "|")
+        
+        for parm in doodleParms
+        {
+            let keyValue = parm.components(separatedBy: ":")
+            
+            switch keyValue[0]
+            {
+                case "Point":
+                    doodleMark.point = CGPointFromString(keyValue[1])
+                
+                case "Color":
+                    doodleMark.color = UIColor.init(rgbaString: keyValue[1])
+                
+                case "DrawMode":
+                    let dModeKeyValue = keyValue[1].components(separatedBy: ",")
+                    
+                    switch dModeKeyValue[0]
+                    {
+                        case "DOT":
+                            doodleMark.addDrawMode(newDrawMode: DrawMode(drawMethod: DrawMethod.DOT, drawValue: Float(dModeKeyValue[1])!))
+                        case "LINE":
+                            doodleMark.addDrawMode(newDrawMode: DrawMode(drawMethod: DrawMethod.LINE, drawValue: Float(dModeKeyValue[1])!))
+                        case "SHAKE":
+                            doodleMark.addDrawMode(newDrawMode: DrawMode(drawMethod: DrawMethod.SHAKE, drawValue: Float(dModeKeyValue[1])!))
+                        default:
+                            doodleMark.addDrawMode(newDrawMode: DrawMode(drawMethod: DrawMethod.DOT, drawValue: 3))
+                    }
+                
+                default:
+                    NSLog("no defaults")
+            }
+        }
+    }
+    
+    
     func loadSettings()
     {
         isSnakeModeEnabled = UserDefaults.standard.bool(forKey: "isSnakeModeEnabled")
@@ -155,19 +195,33 @@ class DoodleMark
     var color: UIColor!
     var drawMode = [DrawMode]()
     
-    var jsonString : String
+    var toString: String
     {
-        let colorStr = color.toRGBAString()
-        var dict = [ "point" : String(format: "{%.1f,%.1f}|", point.x, point.y), "color" : colorStr ]
+        var objString = String(format: "Point:{%.1f,%.1f}|", point.x, point.y)
+        objString += "Color:\(color.toRGBAString())"
         
-        for index in 0..<drawMode.count
+        for dMode in drawMode
         {
-            dict["drawmode\(index)"] = drawMode[index].jsonString
+             objString += "|"
+            objString += "DrawMode:\(dMode.drawMethod),\(dMode.drawValue)"
         }
-        
-        let data =  try! JSONSerialization.data(withJSONObject: dict, options: [])
-        return String(data:data, encoding:.utf8)!
+
+        return objString
     }
+    
+//    var jsonString : String
+//    {
+//        let colorStr = color.toRGBAString()
+//        var dict = [ "point" : String(format: "{%.1f,%.1f}|", point.x, point.y), "color" : colorStr ]
+//
+//        for index in 0..<drawMode.count
+//        {
+//            dict["drawmode\(index)"] = drawMode[index].jsonString
+//        }
+//
+//        let data =  try! JSONSerialization.data(withJSONObject: dict, options: [])
+//        return String(data:data, encoding:.utf8)!
+//    }
     
     init(touchPoint: CGPoint)
     {

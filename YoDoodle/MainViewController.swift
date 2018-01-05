@@ -111,8 +111,7 @@ extension MainViewController : DoodlePeerDelegate
     {
         OperationQueue.main.addOperation
         {
-            
-            self.doodleModel.addPoint(point: CGPointFromString(drawPtString))
+            self.doodleModel.createDoodleMarkFromString(doodleMarkString: doodleMarkString)
             self.doodleView.setNeedsDisplay()
         }
     }
