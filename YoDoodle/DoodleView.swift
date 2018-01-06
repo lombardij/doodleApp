@@ -82,10 +82,7 @@ class DoodleView: UIView {
                                  width: colorWidth, height: colorBox.fullRect.size.height))
         }
         
-        //let colorIndex: Int = Int(CGFloat(colorBox.curPosition) * CGFloat(colorBox.colorArray.count))
-
-        if colorBox.touchPt.x > colorBox.fullRect.minX && colorBox.touchPt.x < colorBox.fullRect.maxX &&
-            colorBox.touchPt.x > colorBox.fullRect.minX && colorBox.touchPt.x < colorBox.fullRect.maxX
+        if colorBox.fullRect.contains(colorBox.touchPt)
         {
             let colorIndex: Int = Int(CGFloat(Float((colorBox.touchPt.x - colorBox.fullRect.minX) / (colorBox.fullRect.size.width))) * CGFloat(colorBox.colorArray.count))
             
@@ -117,12 +114,17 @@ class DoodleView: UIView {
         let touch = touches.first!
         let point = touch.location(in: self)
 
-        if point.x > colorBox.iconRect.minX && point.x < colorBox.iconRect.maxX &&
-           point.y > colorBox.iconRect.minY && point.y < colorBox.iconRect.maxY
+        if colorBox.iconRect.contains(point)
         {
             colorBox.active = true
-            self.setNeedsDisplay()
         }
+        else
+        {
+            let doodleMark = doodleModel.addPoint(point: point)
+            doodlePeer.send(doodleMark: doodleMark)
+        }
+        
+        self.setNeedsDisplay()
     }
     
     
@@ -137,7 +139,6 @@ class DoodleView: UIView {
         
         if colorBox.active
         {
-            //colorBox.curPosition = Float((point.x - colorBox.fullRect.minX) / (colorBox.fullRect.size.width))
             colorBox.touchPt = point
         }
         else
@@ -158,8 +159,7 @@ class DoodleView: UIView {
 
         if colorBox.active
         {
-            if point.x > colorBox.fullRect.minX && point.x < colorBox.fullRect.maxX &&
-                point.y > colorBox.fullRect.minY && point.y < colorBox.fullRect.maxY
+            if colorBox.fullRect.contains(point)
             {
                 let colorWidth = colorBox.fullRect.size.width / CGFloat(colorBox.colorArray.count)
                 let index: Int = Int((point.x - colorBox.fullRect.minX) / colorWidth)

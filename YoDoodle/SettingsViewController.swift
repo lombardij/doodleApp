@@ -64,7 +64,7 @@ class SettingsViewController: UIViewController {
         doodleModel.isShakeModeEnabled = shakeMode.isOn
         doodleModel.shakeMax = shakeMax.value
         
-        // Add glow
+        // Need to add glow
         
         doodleModel.saveSettings()
     }
