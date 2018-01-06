@@ -16,7 +16,7 @@ class DoodleView: UIView {
     var touchBusy: Bool = false
     var colorBox: ColorBox = ColorBox(iconRect: CGRect(x:0,y:0,width:0,height:0),
                                       fullRect: CGRect(x:0,y:0,width:0,height:0),
-                                      active: false, color: UIColor.red, curPosition: 0)
+                                      active: false, color: UIColor.red, touchPt: CGPoint(x:0,y:0))
     
     
     override func draw(_ rect: CGRect)
@@ -72,29 +72,32 @@ class DoodleView: UIView {
     {
         let context = UIGraphicsGetCurrentContext()
         let colorWidth = colorBox.fullRect.size.width / CGFloat(colorBox.colorArray.count)
-        let colorIndex: Int = Int(CGFloat(colorBox.curPosition) * CGFloat(colorBox.colorArray.count))
-        
+
         for index in 0..<colorBox.colorArray.count
         {
             let color = colorBox.colorArray[index]
             context?.setFillColor(color.cgColor)
 
-            context?.fill(CGRect(x: colorBox.fullRect.minX + CGFloat(index) * colorWidth,
-                                                      y: colorBox.fullRect.minY,
-                                                     width: colorWidth,
-                                                     height: colorBox.fullRect.size.height))
+            context?.fill(CGRect(x: colorBox.fullRect.minX + CGFloat(index) * colorWidth, y: colorBox.fullRect.minY,
+                                 width: colorWidth, height: colorBox.fullRect.size.height))
         }
         
-        for index in 0..<colorBox.colorArray.count
+        //let colorIndex: Int = Int(CGFloat(colorBox.curPosition) * CGFloat(colorBox.colorArray.count))
+
+        if colorBox.touchPt.x > colorBox.fullRect.minX && colorBox.touchPt.x < colorBox.fullRect.maxX &&
+            colorBox.touchPt.x > colorBox.fullRect.minX && colorBox.touchPt.x < colorBox.fullRect.maxX
         {
-            if index == colorIndex
+            let colorIndex: Int = Int(CGFloat(Float((colorBox.touchPt.x - colorBox.fullRect.minX) / (colorBox.fullRect.size.width))) * CGFloat(colorBox.colorArray.count))
+            
+            for index in 0..<colorBox.colorArray.count
             {
-                context?.setLineWidth(CGFloat(5))
-                context?.setStrokeColor(UIColor.white.cgColor)
-                context?.stroke(CGRect(x: colorBox.fullRect.minX + CGFloat(index) * colorWidth,
-                                                                  y: colorBox.fullRect.minY,
-                                                                  width: colorWidth,
-                                                                  height: colorBox.fullRect.size.height))
+                if index == colorIndex
+                {
+                    context?.setLineWidth(CGFloat(5))
+                    context?.setStrokeColor(UIColor.white.cgColor)
+                    context?.stroke(CGRect(x: colorBox.fullRect.minX + CGFloat(index) * colorWidth, y: colorBox.fullRect.minY,
+                                           width: colorWidth, height: colorBox.fullRect.size.height))
+                }
             }
         }
     }
@@ -134,7 +137,8 @@ class DoodleView: UIView {
         
         if colorBox.active
         {
-            colorBox.curPosition = Float((point.x - colorBox.fullRect.minX) / (colorBox.fullRect.size.width))
+            //colorBox.curPosition = Float((point.x - colorBox.fullRect.minX) / (colorBox.fullRect.size.width))
+            colorBox.touchPt = point
         }
         else
         {
@@ -162,6 +166,8 @@ class DoodleView: UIView {
                 
                 colorBox.color = colorBox.colorArray[index]
                 doodleModel.currentColor = colorBox.color
+                
+                UserDefaults.standard.set(doodleModel.currentColor.toRGBAString(), forKey: "currentColor")
              }
             
             colorBox.active = false
@@ -178,6 +184,6 @@ struct ColorBox
     var fullRect: CGRect
     var active: Bool
     var color: UIColor
-    var curPosition: Float
+    var touchPt: CGPoint
     let colorArray = [ UIColor.red, UIColor.green, UIColor.blue, UIColor.yellow, UIColor.black, UIColor.white ]
 }

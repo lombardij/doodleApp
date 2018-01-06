@@ -137,6 +137,8 @@ class DoodleModel: NSObject
                     NSLog("no defaults")
             }
         }
+        
+        doodleArray.append(doodleMark)
     }
     
     
@@ -153,6 +155,11 @@ class DoodleModel: NSObject
         
         isShakeModeEnabled = UserDefaults.standard.bool(forKey: "isShakeModeEnabled")
         shakeMax = UserDefaults.standard.float(forKey: "shakeMax")
+        
+        if UserDefaults.standard.string(forKey: "currentColor") != nil
+        {
+            currentColor = UIColor.init(rgbaString: UserDefaults.standard.string(forKey: "currentColor")!)!
+        }
     }
     
     
@@ -169,6 +176,8 @@ class DoodleModel: NSObject
         
         UserDefaults.standard.set(isShakeModeEnabled, forKey: "isShakeModeEnabled")
         UserDefaults.standard.set(shakeMax, forKey: "shakeMax")
+        
+        UserDefaults.standard.set(currentColor.toRGBAString(), forKey: "currentColor")
     }
     
     
@@ -185,6 +194,8 @@ class DoodleModel: NSObject
         
         UserDefaults.standard.set(false, forKey: "isShakeModeEnabled")
         UserDefaults.standard.set(4, forKey: "shakeMax")
+        
+        UserDefaults.standard.set(currentColor.toRGBAString(), forKey: "currentColor")
     }
 }
 
@@ -299,5 +310,4 @@ extension UIColor
         self.getRed(&r, green: &g, blue: &b, alpha: &a)
         return "\(r) \(g) \(b) \(a)"
     }
-    
 }

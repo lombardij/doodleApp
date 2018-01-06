@@ -23,9 +23,11 @@ class MainViewController: UIViewController
     {
         super.viewDidLoad()
         
-        doodleView.frame = self.view.frame
+        NotificationCenter.default.addObserver(self, selector: #selector(self.deviceRotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+
+        self.shakeTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.shakePoints), userInfo: nil, repeats: true)
         
-        clearButton.center = CGPoint(x: self.view.frame.width - 40, y: 60)
+        updateViewPlacement()
         
         if let viewControllers = self.tabBarController?.viewControllers
         {
@@ -45,13 +47,22 @@ class MainViewController: UIViewController
         doodlePeer.delegate = self
     }
     
-
-    override func viewDidAppear(_ animated: Bool)
+    
+    @objc func deviceRotated()
     {
-        super.viewDidAppear(animated)
-        
-        checkDrawEffects()
-        
+        updateViewPlacement()
+        /*
+        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+            print("Landscape")
+        }
+        */
+    }
+    
+    
+    func updateViewPlacement()
+    {
+        doodleView.frame = self.view.frame
+        clearButton.center = CGPoint(x: self.view.frame.width - 30, y: 40)
         doodleView.updateColorBox(viewRect: self.view.frame)
     }
     
@@ -60,25 +71,6 @@ class MainViewController: UIViewController
     {
         doodleModel.clearDoodle()
         doodleView.setNeedsDisplay()
-    }
-    
-    
-    func checkDrawEffects()
-    {
-        if doodleModel.isShakeModeEnabled && shakeTimer == nil
-        {
-            self.shakeTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.shakePoints), userInfo: nil, repeats: true)
-        }
-        
-//        if doodleModel.isShakeModeEnabled && shakeTimer == nil
-//        {
-//            self.shakeTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.shakePoints), userInfo: nil, repeats: true)
-//        }
-//        else if !doodleModel.isShakeModeEnabled && self.shakeTimer != nil
-//        {
-//            self.shakeTimer.invalidate()
-//            self.shakeTimer = nil
-//        }
     }
     
     
