@@ -138,6 +138,5 @@ protocol DoodlePeerDelegate
 {
     func connectedDevicesChanged(manager : DoodlePeer, connectedDevices: [String])
     func addDoodleMark(manager : DoodlePeer, doodleMarkString: String)
-    
 }
 

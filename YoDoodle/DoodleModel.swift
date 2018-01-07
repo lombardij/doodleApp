@@ -25,6 +25,7 @@ class DoodleModel: NSObject
     
     var isShakeModeEnabled: Bool = false
     var shakeMax: Float = 4
+    var isShakeAnchored: Bool = true
     
     var currentColor: UIColor = UIColor.red
     
@@ -75,20 +76,26 @@ class DoodleModel: NSObject
     func shakePoints()
     {
         var doodleMark: DoodleMark!
-        var snakeSize: Float
+        var shakeSize: Float
         
         for index in 0..<doodleArray.count
         {
             doodleMark = doodleArray[index]
             
-            snakeSize = doodleMark.doesMarkInclude(drawMethod: DrawMethod.SHAKE)
+            shakeSize = doodleMark.doesMarkInclude(drawMethod: DrawMethod.SHAKE)
             
-            if snakeSize > -1
+            if shakeSize > -1
             {
-                let newX: Float = Float(doodleMark.point.x) + Float(arc4random_uniform(UInt32(snakeSize))) - (snakeSize-1)/2.0
-                let newY: Float = Float(doodleMark.point.y) + Float(arc4random_uniform(UInt32(snakeSize))) - (snakeSize-1)/2.0
+                let newX: Float = Float(arc4random_uniform(UInt32(shakeSize))) - (shakeSize - 1.5)/2.0
+                let newY: Float = Float(arc4random_uniform(UInt32(shakeSize))) - (shakeSize - 1.5)/2.0
                 
-                doodleMark.point = CGPoint(x: CGFloat(newX), y: CGFloat(newY))
+                doodleMark.shakeOffset = CGPoint(x: CGFloat(newX), y: CGFloat(newY))
+                
+                if !isShakeAnchored    // let original point float with shake vs randomness is always around original point
+                {
+                    doodleMark.point = CGPoint(x: doodleMark.point.x + CGFloat(newX),
+                                               y: doodleMark.point.y + CGFloat(newY))
+                }
             }
         }
     }
@@ -112,13 +119,16 @@ class DoodleModel: NSObject
             
             switch keyValue[0]
             {
-                case "Point":
+                case "PT":
                     doodleMark.point = CGPointFromString(keyValue[1])
                 
-                case "Color":
+                case "CL":
                     doodleMark.color = UIColor.init(rgbaString: keyValue[1])
                 
-                case "DrawMode":
+                case "BP":
+                    doodleMark.isBeginPt = Bool(keyValue[1])!
+                
+                case "DM":
                     let dModeKeyValue = keyValue[1].components(separatedBy: ",")
                     
                     switch dModeKeyValue[0]
@@ -155,6 +165,7 @@ class DoodleModel: NSObject
         
         isShakeModeEnabled = UserDefaults.standard.bool(forKey: "isShakeModeEnabled")
         shakeMax = UserDefaults.standard.float(forKey: "shakeMax")
+        isShakeAnchored =  UserDefaults.standard.bool(forKey: "isShakeAnchored")
         
         if UserDefaults.standard.string(forKey: "currentColor") != nil
         {
@@ -176,6 +187,7 @@ class DoodleModel: NSObject
         
         UserDefaults.standard.set(isShakeModeEnabled, forKey: "isShakeModeEnabled")
         UserDefaults.standard.set(shakeMax, forKey: "shakeMax")
+        UserDefaults.standard.set(isShakeAnchored, forKey: "isShakeAnchored")
         
         UserDefaults.standard.set(currentColor.toRGBAString(), forKey: "currentColor")
     }
@@ -194,7 +206,8 @@ class DoodleModel: NSObject
         
         UserDefaults.standard.set(false, forKey: "isShakeModeEnabled")
         UserDefaults.standard.set(4, forKey: "shakeMax")
-        
+        UserDefaults.standard.set(true, forKey: "isShakeAnchored")
+
         UserDefaults.standard.set(currentColor.toRGBAString(), forKey: "currentColor")
     }
 }
@@ -202,19 +215,21 @@ class DoodleModel: NSObject
 
 class DoodleMark
 {
-    var point: CGPoint!
-    var color: UIColor!
-    var drawMode = [DrawMode]()
+    var point: CGPoint!                     // PT
+    var isBeginPt: Bool = false             // BP
+    var color: UIColor!                     // CL
+    var drawMode = [DrawMode]()             // DM
+    var shakeOffset = CGPoint(x:0,y:0)      // not sent to Peer. Temp var
     
     var toString: String
     {
-        var objString = String(format: "Point:{%.1f,%.1f}|", point.x, point.y)
-        objString += "Color:\(color.toRGBAString())"
-        
+        var objString = String(format: "PT:{%.1f,%.1f}|", point.x, point.y)
+        objString += "CL:\(color.toRGBAString())|BP:\(isBeginPt)"
+
         for dMode in drawMode
         {
              objString += "|"
-            objString += "DrawMode:\(dMode.drawMethod),\(dMode.drawValue)"
+            objString += "DM:\(dMode.drawMethod),\(dMode.drawValue)"
         }
 
         return objString

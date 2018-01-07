@@ -23,6 +23,7 @@ class DoodleView: UIView {
     {
         let context = UIGraphicsGetCurrentContext()
         context?.setAllowsAntialiasing(true)
+        context?.setLineCap(.round)
         
         for index in 0..<doodleModel.doodleArray.count
         {
@@ -31,29 +32,37 @@ class DoodleView: UIView {
             context?.setFillColor(doodleMark.color.cgColor)                                             // Set the current fill and stroke
             context?.setStrokeColor(doodleMark.color.cgColor)                                           // colors for this point/mark
             
+            //-----------
+            
             let lineWidth = doodleMark.doesMarkInclude(drawMethod: DrawMethod.LINE)                     // SEE if mark specifies LINE draw
             
-            if lineWidth > -1 && index > 0                                                              // If mark includes drawing as a line
+            if lineWidth > -1 && !doodleMark.isBeginPt // index > 0                                     // If mark includes drawing as a line
             {
                 context?.setLineWidth(CGFloat(lineWidth))
                 
                 let doodleMark2 = doodleModel.doodleArray[index - 1]
                 
-                context?.move(to: doodleMark.point)
-                context?.addLine(to: doodleMark2.point)
+                context?.move(to: CGPoint(x: doodleMark.point.x + doodleMark.shakeOffset.x,
+                                          y: doodleMark.point.y + doodleMark.shakeOffset.y))
+                    context?.addLine(to: CGPoint(x: doodleMark2.point.x + doodleMark2.shakeOffset.x,
+                                                 y: doodleMark2.point.y + doodleMark2.shakeOffset.y))
                 context?.strokePath()
             }
+            
+            //-----------
             
             let dotSize = doodleMark.doesMarkInclude(drawMethod: DrawMethod.DOT)                        // SEE if mark specifies DOT draw
 
             if dotSize > -1
             {
-                let circleRect = CGRect(x: CGFloat(doodleMark.point.x) - CGFloat(dotSize/2.0),
-                                        y: CGFloat(doodleMark.point.y) - CGFloat(dotSize/2.0),
+                let circleRect = CGRect(x: CGFloat(doodleMark.point.x + doodleMark.shakeOffset.x) - CGFloat(dotSize/2.0),
+                                        y: CGFloat(doodleMark.point.y + doodleMark.shakeOffset.y) - CGFloat(dotSize/2.0),
                                         width: CGFloat(dotSize),
                                         height: CGFloat(dotSize))
                 context?.fillEllipse(in: circleRect)
             }
+            
+            //-----------
         }
         
         if colorBox.active
@@ -103,7 +112,7 @@ class DoodleView: UIView {
     func updateColorBox(viewRect: CGRect)
     {
         self.colorBox.iconRect = CGRect(x: 30, y: viewRect.height - 100 , width: 30, height: 30)
-        self.colorBox.fullRect = CGRect(x: 30, y: viewRect.height - 100,
+        self.colorBox.fullRect = CGRect(x: 30, y: viewRect.height - 150,
                                         width: self.frame.size.width - 60, height: 30)
         self.setNeedsDisplay()
     }
@@ -121,6 +130,7 @@ class DoodleView: UIView {
         else
         {
             let doodleMark = doodleModel.addPoint(point: point)
+            doodleMark.isBeginPt = true
             doodlePeer.send(doodleMark: doodleMark)
         }
         

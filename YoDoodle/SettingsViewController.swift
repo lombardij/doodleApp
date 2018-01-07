@@ -23,9 +23,7 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet var shakeMode: UISwitch!
     @IBOutlet var shakeMax: UISlider!
-    
-    @IBOutlet var glowMode: UISwitch!
-    @IBOutlet var glowMax: UISlider!
+    @IBOutlet var shakeAnchor: UISwitch!
     
     
     override func viewDidLoad()
@@ -43,8 +41,7 @@ class SettingsViewController: UIViewController {
         
         shakeMode.isOn = doodleModel.isShakeModeEnabled
         shakeMax.value = Float(doodleModel.shakeMax)
-        
-        // Add glow
+        shakeAnchor.isOn = doodleModel.isShakeAnchored
     }
 
    
@@ -63,8 +60,7 @@ class SettingsViewController: UIViewController {
         
         doodleModel.isShakeModeEnabled = shakeMode.isOn
         doodleModel.shakeMax = shakeMax.value
-        
-        // Need to add glow
+        doodleModel.isShakeAnchored = shakeAnchor.isOn
         
         doodleModel.saveSettings()
     }
