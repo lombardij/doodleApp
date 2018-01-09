@@ -36,7 +36,7 @@ class DoodleView: UIView {
             
             let lineWidth = doodleMark.doesMarkInclude(drawMethod: DrawMethod.LINE)                     // SEE if mark specifies LINE draw
             
-            if lineWidth > -1 && !doodleMark.isBeginPt // index > 0                                     // If mark includes drawing as a line
+            if lineWidth > -1 && !doodleMark.isBeginPt && index > 0                                     // If mark includes drawing as a line
             {
                 context?.setLineWidth(CGFloat(lineWidth))
                 
